@@ -19,6 +19,18 @@
     </todo-list>
     <test></test>
     <todo></todo>
+    <button @click="destroyClock = !destroyClock">{{destroyClock ? '加载时钟' : '销毁时钟'}}</button>
+    <clock v-if="!destroyClock" />
+    <directives />
+    <CustomerDirectives />
+    <div>
+      <ChildrenA />
+    </div>
+    <VNodes :vnodes="getJSXSpan()" />
+    <anchored-heading1 :level="1">Hello world!</anchored-heading1>
+    <anchored-heading2 :level="2">Hello world!</anchored-heading2>
+    <anchored-heading3 :level="3">Hello world!</anchored-heading3>
+    <VNodes :vnodes="getAnchoredHeading(4)" />
   </div>
 </template>
 
@@ -27,14 +39,33 @@ import TodoList from './components/TodoList.vue';
 import TodoItem from './components/TodoItem.vue';
 import Test from './components/Test.vue';
 import Todo from './components/Todo.vue';
+import Clock from './components/Clock';
+import Directives from './components/directives';
+import CustomerDirectives from './components/CustomerDirectives';
+import AnchoredHeading1 from './components/AnchoredHeading.vue';
+import AnchoredHeading2 from './components/AnchoredHeading.js';
+import AnchoredHeading3 from './components/AnchoredHeading.jsx';
+
+import ChildrenA from './components/ChildrenA';
 
 export default {
   name: 'app',
   components: {
+    Clock,
     TodoItem,
     TodoList,
     Test,
-    Todo
+    Todo,
+    Directives,
+    CustomerDirectives,
+    ChildrenA,
+    AnchoredHeading1,
+    AnchoredHeading2,
+    AnchoredHeading3,
+    VNodes: {
+      functional: true,
+      render: (h, ctx) => ctx.props.vnodes
+    }
   },
   data() {
     return {
@@ -45,7 +76,8 @@ export default {
       }, {
         title: '课程2',
         del: true
-      }]
+      }],
+      destroyClock: false
     };
   },
   methods: {
@@ -61,7 +93,30 @@ export default {
     },
     handleInputChange(e) {
       this.message = e.target.value;
+    },
+    getJSXSpan() {
+      return <span>Message: {this.message}</span>;
+    },
+    getAnchoredHeading(level) {
+      const Tag = `h${level}`;
+      return <Tag>Hello world!</Tag>;
     }
   }
 }
 </script>
+
+<style>
+.border,
+.border1,
+.border2 {
+  border: 1px solid #000;
+  padding: 10px 0;
+  margin: 10px 10px 0;
+}
+.border1 {
+  border-color: #ccc;
+}
+.border2 {
+  border-color: #eee;
+}
+</style>
