@@ -31,6 +31,10 @@
     <anchored-heading2 :level="2">Hello world!</anchored-heading2>
     <anchored-heading3 :level="3">Hello world!</anchored-heading3>
     <VNodes :vnodes="getAnchoredHeading(4)" />
+    <list-render></list-render>
+    <event-handle></event-handle>
+    <Form />
+    <Comp></Comp>
   </div>
 </template>
 
@@ -47,6 +51,10 @@ import AnchoredHeading2 from './components/AnchoredHeading.js';
 import AnchoredHeading3 from './components/AnchoredHeading.jsx';
 
 import ChildrenA from './components/ChildrenA';
+import ListRender from './components/ListRender';
+import EventHandle from './components/EventHandle';
+import Form from './components/Form';
+import Comp from './components/Component.vue';
 
 export default {
   name: 'app',
@@ -65,7 +73,11 @@ export default {
     VNodes: {
       functional: true,
       render: (h, ctx) => ctx.props.vnodes
-    }
+    },
+    ListRender,
+    EventHandle,
+    Form,
+    Comp
   },
   data() {
     return {
