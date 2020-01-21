@@ -35,6 +35,8 @@
     <event-handle></event-handle>
     <Form />
     <Comp></Comp>
+    <ComputedAndWatch></ComputedAndWatch>
+    <ClassAndStyle></ClassAndStyle>
   </div>
 </template>
 
@@ -55,6 +57,8 @@ import ListRender from './components/ListRender';
 import EventHandle from './components/EventHandle';
 import Form from './components/Form';
 import Comp from './components/Component.vue';
+import ComputedAndWatch from './components/ComputedAndWatch';
+import ClassAndStyle from './components/ClassAndStyle';
 
 export default {
   name: 'app',
@@ -77,7 +81,9 @@ export default {
     ListRender,
     EventHandle,
     Form,
-    Comp
+    Comp,
+    ComputedAndWatch,
+    ClassAndStyle
   },
   data() {
     return {
